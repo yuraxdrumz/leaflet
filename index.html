@@ -9,6 +9,33 @@
     <link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
+
+
+
+  <div class="container" ng-controller='navCtrl'>
+   <div class='navbar navbar-inverse'>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref='home'>MyTrip</a>
+    </div>
+    <div class="collapse navbar-collapse" ng-if='!logged'>
+    <ul class="nav navbar-nav navbar-right">
+        <li ng-class="{ active: isActive('register')}"><a ui-sref='register'>Register</a></li>
+    </ul>
+    </div><!--/.nav-collapse -->
+    <div class="collapse navbar-collapse" ng-if='logged'>
+    <ul class="nav navbar-nav navbar-right">
+        <li ng-class="{ active: isActive('main')}"><a ui-sref='main'>Main</a></li>
+        <li ><a ui-sref='home'>Logout</a></li>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+
 <ui-view></ui-view>
 
 
@@ -33,9 +60,9 @@
 <script src="/js/controllers/homeCtrl.js"></script>
 <script src="/js/controllers/regCtrl.js"></script>
 <script src="/js/controllers/mainCtrl.js"></script>
+<script src="/js/controllers/navCtrl.js"></script>
 
 <!--Components-->
-<script src="/js/components/navbar.js"></script>
 
 <!--Services-->
 <script src="/js/services/auth-service.js"></script>

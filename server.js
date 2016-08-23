@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var passport = require('passport');
                require('./server/config/passport')(passport);
-
+var apiRouter = require('./server/routes/api-router')(passport);
 
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/mytrip')
@@ -29,50 +29,7 @@ con.on('open',function(){
         res.sendFile(__dirname + '/index.html');
     });
 
-
-    app.post('/api/register',function(req, res, next){
-        passport.authenticate('local-signup', function(err, user, info){
-        var token;
-
-        // If Passport throws/catches an error
-        if (err) {
-          res.status(401).json(err);
-          return;
-        }
-
-        // If a user is found
-        if(user){
-            token = user.generateJwt();
-            res.status(200);
-            res.json({
-            "token" : token
-            });
-
-        } else {
-          // If user is not found
-          res.status(401).json(info);
-        }
-        })(req, res)
-    })
-
-    app.post('/api/login', function(req, res, next){
-        passport.authenticate('local-login',function(err, user, info){
-            var token;
-
-            if(err){
-                res.status(401).json(err);
-                return
-            }
-            if(user){
-                token = user.generateJwt();
-                res.status(200);
-                res.json({"token":token});
-            }
-            else{
-                res.status(401).json(info)
-            }
-        })(req, res)
-    });
+    app.use('/api',apiRouter);
 
     app.listen(port, function(){
         console.log('listening on port' + port);
