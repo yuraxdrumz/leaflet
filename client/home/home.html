@@ -1,28 +1,27 @@
 <div class="container">
-
+    <nav logged=false></nav>
    <section id="login">
-
     <div class="container">
 
     	<div class="row">
     	    <div class="col-xs-12">
         	    <div class="form-wrap">
-                <h1>Log in with your email account</h1>
-                    <form  ng-submit='login()' id="login-form" autocomplete="off">
+                <h1>Log in with your email account or register to enjoy MyTrip</h1>
+                    <form  ng-submit='ctrl.login()' id="login-form">
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
-                            <input type="email" ng-model='user.email' name="email" id="email" class="form-control" placeholder="somebody@example.com">
+                            <input type="email" ng-model='ctrl.user.email' name="email" id="email" class="form-control" placeholder="somebody@example.com" required>
                         </div>
 
                         <div class="form-group">
 
                             <label for="key" class="sr-only">Password</label>
-                            <input type="password" ng-model='user.password' name="key" id="key" class="form-control" placeholder="Password">
+                            <input type="password" ng-model='ctrl.user.password' name="key" id="key" class="form-control" placeholder="Password" required>
                         </div>
 
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
 
-                        <a ui-sref='register' id='btn_register'>
+                        <a ng-href='#/register' id='btn_register'>
                         <button type="button" id="btn-register" class="btn btn-custom btn-lg btn-block" value="Register">Register</button>
 
                     </form>
@@ -56,12 +55,5 @@
 	</div> <!-- /.modal-dialog -->
 </div> <!-- /.modal -->
 
-      <div class="mastfoot">
-        <div class="inner">
-          <!-- Validation -->
-
-          <p>© 2016 MyTrip <a href=
-          "http://getbootstrap.com/">Bootstrap</a></p>
-        </div>
-      </div>
+<footer></footer>
 </div>

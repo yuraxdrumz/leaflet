@@ -1,7 +1,3 @@
-/*    --------------------------------------------------
-	:: Login Section
-	-------------------------------------------------- */
-
 #login {
     padding-top: 50px
 }
@@ -77,10 +73,7 @@
     color:white;
     background-color:#24e3a7;
 }
-  .mastfoot {
-    position: fixed;
-    bottom: 0;
-  }
+
 #btn_register{
     text-decoration: none;
 }

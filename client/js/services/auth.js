@@ -2,7 +2,7 @@
     angular.module('myApp')
     .factory('auth',['$http','$window',function($http, $window){
         var saveToken = function(token){
-            $window.localStorage['token'] = token;
+            return $window.localStorage['token'] = token;
         };
         var getToken = function(){
             return $window.localStorage['token'];
@@ -16,7 +16,7 @@
             })
         };
         var logout = function() {
-            $window.localStorage.removeItem('token');
+            return $window.localStorage.removeItem('token');
         };
         var login = function(user){
             return $http.post('/api/login', user).then(function(res){

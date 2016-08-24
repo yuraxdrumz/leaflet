@@ -1,23 +1,15 @@
 (function(){
-    angular.module('myApp',['ui.router','ngMessages'])
-    .config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider){
-        $urlRouterProvider.otherwise('/');
-        $stateProvider
-
-            .state('home',{
-                url:'/',
-                templateUrl:'/templates/home.html',
-                controller:'homeCtrl'
+    angular.module('myApp',['ngRoute','ngMessages'])
+    .config(['$routeProvider', function($routeProvider){
+        $routeProvider
+            .when('/',{
+                template:'<home></home>'
             })
-            .state('register',{
-                url:'/register',
-                templateUrl:'/templates/register.html',
-                controller:'regCtrl'
+            .when('/register',{
+                template:'<register></register>'
             })
-            .state('main', {
-                url:'/main',
-                templateUrl:'/templates/main.html',
-                controller:'mainCtrl'
+            .when('/main',{
+                template:'<main></main>'
         })
     }])
 })()
