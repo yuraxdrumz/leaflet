@@ -10,6 +10,9 @@
             })
             .when('/main',{
                 template:'<main></main>'
+            })
+            .when('/map',{
+                template:'<map></map>'
         })
     }])
 })()

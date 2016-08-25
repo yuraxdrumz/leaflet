@@ -9,14 +9,17 @@
 			  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
 			  crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
 <link rel="stylesheet" href="/home/home.css">
 <link rel="stylesheet" href="/register/register.css">
 <link rel="stylesheet" href="/footer/footer.css">
+<link rel="stylesheet" href="/map/map.css">
 </head>
 <body ng-app='myApp'>
 <ng-view></ng-view>
 
 <!--Angular Files-->
+ <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
 <script src="/angular/angular.js"></script>
 <script src="/angular-route/angular-route.js"></script>
 <script src="/angular-messages/angular-messages.js"></script>
@@ -30,6 +33,7 @@
 <script src="/register/register.js"></script>
 <script src="/footer/footer.js"></script>
 <script src="/main/main.js"></script>
+<script src="/map/map.js"></script>
 
 <!--Services-->
 <script src="/js/services/auth.js"></script>
@@ -39,6 +43,7 @@
 <script src="/main/mainCtrl.js"></script>
 <script src="/home/homeCtrl.js"></script>
 <script src="/navbar/navCtrl.js"></script>
+<script src="/map/mapCtrl.js"></script>
 
 
 

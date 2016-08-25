@@ -6,5 +6,10 @@
                 auth.logout()
                 $location.path('/')
             }
+            self.$onInit = function(){
+                if(($location.url() === '/main') || ($location.url() === '/map')){
+                    self.logged = true
+                }
+            }
         }])
 })()
