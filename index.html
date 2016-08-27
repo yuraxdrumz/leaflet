@@ -10,10 +10,12 @@
 			  crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
  <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+ <link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/home/home.css">
 <link rel="stylesheet" href="/register/register.css">
 <link rel="stylesheet" href="/footer/footer.css">
 <link rel="stylesheet" href="/map/map.css">
+
 </head>
 <body ng-app='myApp'>
 <ng-view></ng-view>
@@ -37,6 +39,7 @@
 
 <!--Services-->
 <script src="/js/services/auth.js"></script>
+<script src="/js/services/trip-service.js"></script>
 
 <!--Controllers-->
 <script src="/register/regCtrl.js"></script>

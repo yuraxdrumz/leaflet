@@ -47,6 +47,8 @@ module.exports = function(passport){
             }
         })(req, res)
     });
-
+    router.post('/newtrip', function(req,res){
+        console.log(req.body)
+    })
     return router;
 }
