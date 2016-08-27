@@ -5,7 +5,7 @@
                 $location.path('/')
             }
             var self = this;
-            var mymap = L.map('leafmap').setView([32.32, 34.86], 13);
+            var mymap = L.map('leafmap').setView([32.32, 34.86], 10);
             var layer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(mymap);
             var poli_count = 1;
             var polilines = [];
@@ -90,12 +90,15 @@
             self.saveNewTrip = function(){
                 var coords =[];
                 var popups = [];
-                var all = {coords:coords,popups:popups}
+                var all = {coords:coords,popups:popups,user_id:auth.currentUser()._id,user_email:auth.currentUser().email}
                 for(var i=0,len=full.length;i<len;i++){
                     coords.push(full[i].getLatLng())
                     popups.push(full[i]._popup._content)
                 }
-                trips.save(all)
+                trips.save(all).then(function(res){
+                    $location.path('/main')
+                })
+
             }
         }])
 })()

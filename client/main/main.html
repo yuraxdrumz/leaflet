@@ -5,5 +5,7 @@
         <h2>Start a new trip or edit an existing one</h2>
     </div>
     <a ng-href='#/map'><button class="btn btn-primary">New Trip</button></a>
-
+    <div ng-repeat='trip in ctrl.allTrips'>
+        {{trip.coords}}
+    </div>
 </div>
