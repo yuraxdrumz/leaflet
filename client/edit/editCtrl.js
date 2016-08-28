@@ -11,6 +11,7 @@
             var full = [];
             var distance;
             var poli;
+            var pops =[];
             function dragStartHandler(e){
                 var latlngs = poli.getLatLngs();
                 var latlng = this.getLatLng();
@@ -35,10 +36,13 @@
                     return res.data[0];
                 }).then(function(cur){
                     for(var i=0,len=cur.coords.length;i<len;i++){
-                        var marker = L.marker(cur.coords[i],{draggable:true}).addTo(mymap)
+                        var marker = L.marker(cur.coords[i],{draggable:true})
+                        pops.push(cur.popups[i])
                         marker.bindPopup('<input value="'+ cur.popups[i] +'" class="form-control pop-control" type="text" placeholder="add your stop here" id="message"/>');
                         markers.push(cur.coords[i]);
                         full.push(marker);
+                        marker.addTo(mymap);
+
                         (function(marker){
                             marker.on('click', function(e){
                                 mymap.panTo(e.latlng);
@@ -54,19 +58,36 @@
                                         })
 
                                     }
+                                });
+                            });
+                            marker.on('contextmenu', function(e){
+                                var index = full.indexOf(marker);
+                                full.splice(index, 1);
+                                markers = [];
+                                for(var i=0,len=full.length;i<len;i++){
+                                    markers.push(full[i].getLatLng())
+                                }
+                                mymap.eachLayer(function(layer){
+                                    mymap.removeLayer(layer);
                                 })
-                            })
+                                var layer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(mymap);
+                                for(var i=0,len=full.length;i<len;i++){
+                                    full[i].addTo(mymap)
+                                }
+                                poli = L.polyline(markers).addTo(mymap)
+                            });
                             marker.on('dragstart', dragStartHandler)
                             marker.on('drag', dragHandler);
                             marker.on('dragend', dragEndHandler)
                         })(marker)
                     }
+
                     poli = L.polyline(markers).addTo(mymap)
                     var bounds = L.latLngBounds(markers);
                     mymap.fitBounds(bounds);
                 })
             }
-            mymap = L.map('leafmap').setView([32.32, 34.86], 10);
+            mymap = L.map('leafmap2').setView([32.32, 34.86], 10);
             var blackAndWhite = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png')
             var mapnikLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap)
             L.control.layers({'Regular':mapnikLayer,'Black And White':blackAndWhite}).addTo(mymap);
@@ -86,7 +107,7 @@
                                 marker.bindPopup(e.target.value);
                                 full.push(marker);
                                 markers.push(marker.getLatLng());
-                                distance = (marker._latlng.distanceTo(markers[0]))
+
                                 if(full.length>1){
                                     if(poli){
                                         mymap.removeLayer(poli)
@@ -94,6 +115,7 @@
                                     poli = L.polyline(markers)
                                     poli.addTo(mymap);
                                 }
+
                                 marker.off('click');
                                 marker.on('click', function(e){
                                     mymap.panTo(e.latlng)
@@ -119,6 +141,7 @@
                             for(var i=0,len=full.length;i<len;i++){
                                 full[i].addTo(mymap)
                             }
+
                             poli = L.polyline(markers).addTo(mymap)
                         }
 
@@ -129,14 +152,16 @@
                     marker.on('dragend', dragEndHandler)
             });
             self.editTrip = function(e){
+                distance = full[full.length-1]._latlng.distanceTo(full[0]._latlng);
                 var popups = [];
                 for(var i=0,len=full.length;i<len;i++){
-                    if(full[i]._popups._content.includes('<input>')){
-                        console.log('true')
+                    if(full[i]._popup._content.includes('input')){
+                        popups.push(pops[i])
+                    }else{
+                        popups.push(full[i]._popup._content)
                     }
-                    popups.push(full[i]._popup._content)
                 }
-                var edited = {popups:popups,coords:markers}
+                var edited = {popups:popups,coords:markers,distance:distance}
                 trips.sendEdited($routeParams.id,edited).then(function(){
                     $location.path('/main')
                 })

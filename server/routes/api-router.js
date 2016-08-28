@@ -81,10 +81,15 @@ module.exports = function(passport){
     router.post('/edit/:trip_id', function(req, res){
         var trip_id = req.params.trip_id;
         var data = req.body
-        console.log(data)
-//        Trip.findOneAndUpdate({_id:trip_id},{
-//
-//        })
+        Trip.findOneAndUpdate({_id:trip_id},{
+            popups:req.body.popups,
+            coords:req.body.coords,
+            distance:req.body.distance
+        }).exec().then(function(data){
+            res.json(data)
+        }).catch(function(err){
+            res.status(504).json(err)
+        })
     })
     return router;
 }
