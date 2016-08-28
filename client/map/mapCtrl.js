@@ -38,7 +38,7 @@
 
             mymap.on('click', function(e){
                 var marker = L.marker(e.latlng,{draggable:true,bounceOnAdd:true})
-                    marker.bindPopup('<input class="form-control" type="text" placeholder="add your stop here" id="message"/>');
+                    marker.bindPopup('<input class="form-control pop-control" type="text" placeholder="add your stop here" id="message"/>');
                     marker.addTo(mymap);
 
                     marker.on('click', function(e){
