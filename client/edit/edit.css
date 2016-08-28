@@ -1,0 +1,8 @@
+#leafmap2{
+    height: 600px;
+}
+.editTrip{
+        position: absolute;
+    z-index: 9999;
+    bottom:0px;
+}

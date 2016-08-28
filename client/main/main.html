@@ -7,7 +7,7 @@
 
         <table class="table table-striped custab bg-info">
     <thead>
-       <a ng-href='#/map'><button class="btn btn-primary pull-right">New Trip</button></a>
+<!--       <a ng-href='#/map'><button class="btn btn-primary pull-right">New Trip</button></a>-->
         <tr>
             <th>Created</th>
             <th>Total markers set</th>
@@ -18,7 +18,7 @@
             <tr ng-repeat="trip in ctrl.allTrips">
                 <td> {{trip.created}} </td>
                 <td> {{trip.coords.length}} </td>
-                <td> {{trip.distance}} </td>
+                <td> {{(trip.distance/1000).toFixed(1)}} km</td>
                 <td class="text-center">
                     <a class='btn btn-info' ng-href="#/edit/{{trip._id}}">
                     <span class="glyphicon glyphicon-edit"></span>Edit</a>

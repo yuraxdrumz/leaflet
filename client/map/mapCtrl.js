@@ -12,7 +12,6 @@
             L.control.layers({'Regular':mapnikLayer,'Black And White':blackAndWhite}).addTo(mymap)
 
 
-            var poli_count = 1;
             var polilines = [];
             var full = [];
             var poli;
@@ -59,7 +58,6 @@
                                     }
                                     poli = L.polyline(polilines)
                                     poli.addTo(mymap);
-                                    poli_count++;
                                 }
                                 marker.off('click');
                                 marker.on('click', function(e){
@@ -71,23 +69,24 @@
                     });
 
                     marker.on('contextmenu', function(e){
-                        var index = full.indexOf(marker);
-                        full.splice(index, 1);
-                        var second_index = polilines.indexOf(marker.getLatLng());
-                        polilines.splice(second_index, 1);
-                        mymap.eachLayer(function(layer){
-                            mymap.removeLayer(layer);
-                        })
-                        var layer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(mymap);
-                        for(var i=0,len=full.length;i<len;i++){
-                            full[i].addTo(mymap)
-                        }
-                        poli = L.polyline(polilines).addTo(mymap)
-                        if(full.length === 0 ){
-                            poli_count = 1;
+                        if(marker._popup._content === '<input class="form-control pop-control" type="text" placeholder="add your stop here" id="message"/>'){
+                            mymap.removeLayer(marker)
                         }else{
-                            poli_count = full.length;
+                            var index = full.indexOf(marker);
+                            full.splice(index, 1);
+                            var second_index = polilines.indexOf(marker.getLatLng());
+                            polilines.splice(second_index, 1);
+                            mymap.eachLayer(function(layer){
+                                mymap.removeLayer(layer);
+                            })
+                            var layer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(mymap);
+                            for(var i=0,len=full.length;i<len;i++){
+                                full[i].addTo(mymap)
+                            }
+                            poli = L.polyline(polilines).addTo(mymap)
                         }
+
+
                     });
                     marker.on('dragstart', dragStartHandler)
                     marker.on('drag', dragHandler);

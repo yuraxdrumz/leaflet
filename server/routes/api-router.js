@@ -78,5 +78,13 @@ module.exports = function(passport){
             res.status(504).json(err)
         });
     })
+    router.post('/edit/:trip_id', function(req, res){
+        var trip_id = req.params.trip_id;
+        var data = req.body
+        console.log(data)
+//        Trip.findOneAndUpdate({_id:trip_id},{
+//
+//        })
+    })
     return router;
 }

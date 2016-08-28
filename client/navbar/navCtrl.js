@@ -8,7 +8,9 @@
             }
             self.$onInit = function(){
                 console.log($location)
-                if(($location.url() === '/main') || ($location.url() === '/map')){
+                if(($location.url() === '/') || ($location.url() === '/register')){
+                    self.logged = false
+                }else{
                     self.logged = true
                 }
             }

@@ -7,7 +7,6 @@
             }else{
                 trips.load(auth.currentUser()._id).then(function(res){
                     self.allTrips = res.data;
-                    console.log(res.data)
                 })
             }
 
