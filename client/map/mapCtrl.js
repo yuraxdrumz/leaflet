@@ -5,8 +5,13 @@
                 $location.path('/')
             }
             var self = this;
+
+            var blackAndWhite = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png')
             var mymap = L.map('leafmap').setView([32.32, 34.86], 10);
-            var layer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(mymap);
+            var mapnikLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap)
+            L.control.layers({'Regular':mapnikLayer,'Black And White':blackAndWhite}).addTo(mymap)
+
+
             var poli_count = 1;
             var polilines = [];
             var full = [];
@@ -30,10 +35,10 @@
                 delete this.polylineLatlng;
                 polilines = poli.getLatLngs()
             }
-            mymap.on('click', function(e){
 
-                var marker = L.marker(e.latlng,{draggable:true});
-                    marker.bindPopup('<input type="text" placeholder="add your stop here" id="message"/>');
+            mymap.on('click', function(e){
+                var marker = L.marker(e.latlng,{draggable:true,bounceOnAdd:true})
+                    marker.bindPopup('<input class="form-control" type="text" placeholder="add your stop here" id="message"/>');
                     marker.addTo(mymap);
 
                     marker.on('click', function(e){
