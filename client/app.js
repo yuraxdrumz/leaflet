@@ -13,6 +13,9 @@
             })
             .when('/map',{
                 template:'<map></map>'
-        })
+            })
+            .when('/edit/:id',{
+                template:'<edit></edit>'
+            })
     }])
 })()

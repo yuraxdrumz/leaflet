@@ -53,7 +53,8 @@ module.exports = function(passport){
             coords:req.body.coords,
             popups:req.body.popups,
             user_id:req.body.user_id,
-            user_email:req.body.user_email
+            user_email:req.body.user_email,
+            distance:req.body.dist
         });
         trip.save().then(function(){
             res.json('saved')
@@ -69,5 +70,13 @@ module.exports = function(passport){
             res.status(504).json(err);
         })
     });
+    router.get('/edit/:trip_id', function(req, res){
+        var trip_id = req.params.trip_id;
+        Trip.find({_id:trip_id}).exec().then(function(data){
+            res.json(data)
+        }).catch(function(err){
+            res.status(504).json(err)
+        });
+    })
     return router;
 }

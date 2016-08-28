@@ -1,0 +1,16 @@
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
+.check .modalchange{
+    text-decoration: none;
+    color: white;
+}

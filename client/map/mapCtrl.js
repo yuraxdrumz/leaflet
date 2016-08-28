@@ -16,6 +16,7 @@
             var polilines = [];
             var full = [];
             var poli;
+            var distance;
             function dragStartHandler(e){
                 var latlngs = poli.getLatLngs();
                 var latlng = this.getLatLng();
@@ -51,6 +52,7 @@
                                 marker.bindPopup(e.target.value);
                                 full.push(marker);
                                 polilines.push(marker.getLatLng());
+                                distance = (marker._latlng.distanceTo(polilines[0]))
                                 if(full.length>1){
                                     if(poli != undefined){
                                         mymap.removeLayer(poli)
@@ -95,7 +97,7 @@
             self.saveNewTrip = function(){
                 var coords =[];
                 var popups = [];
-                var all = {coords:coords,popups:popups,user_id:auth.currentUser()._id,user_email:auth.currentUser().email}
+                var all = {coords:coords,popups:popups,user_id:auth.currentUser()._id,user_email:auth.currentUser().email,dist:distance}
                 for(var i=0,len=full.length;i<len;i++){
                     coords.push(full[i].getLatLng())
                     popups.push(full[i]._popup._content)

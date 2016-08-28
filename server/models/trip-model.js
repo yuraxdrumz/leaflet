@@ -7,6 +7,7 @@ var tripSchema = new mongoose.Schema({
     user_email:String,
     coords:{type:Array, default:[]},
     popups:{type:Array, default:[]},
+    distance:Number,
     created:{type:Date, default:Date.now}
 })
 

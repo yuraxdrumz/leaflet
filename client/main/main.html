@@ -4,9 +4,30 @@
         <h1>Welcome To MyTrip</h1>
         <h2>Start a new trip or edit an existing one</h2>
     </div>
-    <a ng-href='#/map'><button class="btn btn-primary">New Trip</button></a>
-    <div ng-repeat='trip in ctrl.allTrips'>
-        {{trip.coords}}
-    </div>
+
+        <table class="table table-striped custab bg-info">
+    <thead>
+       <a ng-href='#/map'><button class="btn btn-primary pull-right">New Trip</button></a>
+        <tr>
+            <th>Created</th>
+            <th>Total markers set</th>
+            <th>Total Distance between markers</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+            <tr ng-repeat="trip in ctrl.allTrips">
+                <td> {{trip.created}} </td>
+                <td> {{trip.coords.length}} </td>
+                <td> {{trip.distance}} </td>
+                <td class="text-center">
+                    <a class='btn btn-info' ng-href="#/edit/{{trip._id}}">
+                    <span class="glyphicon glyphicon-edit"></span>Edit</a>
+                    <a ng-href="#/delete/{{trip._id}}" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span>Del</a>
+
+                </td>
+            </tr>
+    </table>
     <footer></footer>
 </div>
+

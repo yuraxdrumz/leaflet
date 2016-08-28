@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
                require('./server/config/passport')(passport);
 var apiRouter = require('./server/routes/api-router')(passport);
-
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/mytrip')
 

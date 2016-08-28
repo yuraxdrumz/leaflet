@@ -7,6 +7,7 @@
                 $location.path('/')
             }
             self.$onInit = function(){
+                console.log($location)
                 if(($location.url() === '/main') || ($location.url() === '/map')){
                     self.logged = true
                 }
