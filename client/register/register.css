@@ -10,6 +10,7 @@
 
 h1.title {
 	font-size: 40px;
+    color:white;
 	font-family: 'Passion One', cursive;
 	font-weight: 400;
 }
@@ -34,7 +35,7 @@ input::-webkit-input-placeholder {
 }
 
 .main-login{
- 	background-color: #fff;
+ 	background: rgba(0, 0, 0, 0.27);
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -58,9 +59,22 @@ input::-webkit-input-placeholder {
 }
 
 .login-register{
-	font-size: 11px;
+	font-size: 14px;
 	text-align: center;
+
+}
+.login-register a{
+    color:white;
 }
 .red{
     color:red;
+}
+.register-page{
+    min-height: 100%;
+    background: url(http://www.uksoftech.com/wp-content/uploads/2016/02/website-design-background.png) 50% 50%;
+    background-size: cover;
+}
+
+.control-label {
+    color:white;
 }

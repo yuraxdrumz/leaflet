@@ -9,7 +9,6 @@
             var mymap;
             var markers = [];
             var full = [];
-            var distance;
             var poli;
             var pops =[];
             function dragStartHandler(e){
@@ -152,9 +151,12 @@
                     marker.on('dragend', dragEndHandler)
             });
             self.editTrip = function(e){
-                distance = full[full.length-1]._latlng.distanceTo(full[0]._latlng);
+                var distance =0;
                 var popups = [];
                 for(var i=0,len=full.length;i<len;i++){
+                    if(i<full.length-1){
+                        distance += full[i]._latlng.distanceTo(full[i+1]._latlng)
+                    }
                     if(full[i]._popup._content.includes('input')){
                         popups.push(pops[i])
                     }else{

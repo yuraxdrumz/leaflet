@@ -51,7 +51,6 @@
                                 marker.bindPopup(e.target.value);
                                 full.push(marker);
                                 polilines.push(marker.getLatLng());
-                                distance = (marker._latlng.distanceTo(polilines[0]))
                                 if(full.length>1){
                                     if(poli != undefined){
                                         mymap.removeLayer(poli)
