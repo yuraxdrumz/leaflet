@@ -1,13 +1,13 @@
 
-   <div class='navbar navbar-inverse'>
+   <div class='navbar navbar-inverse my-nav'>
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand logo" ng-if='!ctrl.logged' ng-href='#/'>MyTrip</a>
-      <a class="navbar-brand logo" ng-if='ctrl.logged' ng-href='#/main'>MyTrip</a>
+      <a class="navbar-brand" ng-if='!ctrl.logged' ng-href='#/'>MyTrip</a>
+      <a class="navbar-brand" ng-if='ctrl.logged' ng-href='#/main'>MyTrip</a>
     </div>
     <div class="collapse navbar-collapse" ng-if='!ctrl.logged' >
     <ul class="nav navbar-nav navbar-right">
