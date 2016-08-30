@@ -12,10 +12,13 @@
 
                 <div class="form-group">
                     <label for="name" class="cols-sm-2 control-label">Your Name</label>
-                    <div class="cols-sm-10">
-                         <div ng-messages="regForm.name.$error" >
-                             <p class="red" ng-message='required' >Username Required</p>
+                    <label for="name" class="cols-sm-1 control-label">
+                          <div ng-messages="regForm.name.$error" >
+                             <p class="red" ng-message='required' >Required</p>
                          </div>
+                    </label>
+                    <div class="cols-sm-10">
+
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                             <input type="text" ng-model='ctrl.user.name' class="form-control" name="name" id="name" required  placeholder="Enter your Name"/>
@@ -26,11 +29,15 @@
 
                 <div class="form-group">
                     <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                    <div class="cols-sm-10">
-                         <div ng-messages="regForm.email.$error">
+                    <label for="email" class="cols-sm-2 control-label">
+                           <div ng-messages="regForm.email.$error">
                             <p class="red" ng-message='email'>Email must be valid</p>
-                            <p class="red" ng-message='required'>Email required</p>
+                            <p class="red" ng-message='required'>Required</p>
                         </div>
+                    </label>
+
+                    <div class="cols-sm-10">
+
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                             <input type="email" ng-model='ctrl.user.email' class="form-control" name="email" id="email" required  placeholder="Enter your Email"/>
@@ -40,10 +47,13 @@
 
                 <div class="form-group">
                     <label for="username" class="cols-sm-2 control-label">Username</label>
-                    <div class="cols-sm-10">
-                         <div ng-messages="regForm.username.$error">
-                            <p class="red" ng-message='required'>Username required</p>
+                    <label for="username" class="cols-sm-2 control-label">
+                        <div ng-messages="regForm.username.$error">
+                            <p class="red" ng-message='required'>Required</p>
                         </div>
+                    </label>
+                    <div class="cols-sm-10">
+
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                             <input type="text" ng-model='ctrl.user.username' class="form-control" name="username" id="username" required   placeholder="Enter your Username"/>
@@ -53,11 +63,14 @@
 
                 <div class="form-group">
                     <label for="password" class="cols-sm-2 control-label">Password</label>
-                    <div class="cols-sm-10">
+                    <label for="password" class="cols-sm-2 control-label">
                          <div ng-messages="regForm.password.$error">
-                            <p class="red" ng-message='minlength'>Password must be at least 5 characters long</p>
-                            <p class="red" ng-message='required'>Password required</p>
+                            <p class="red" ng-message='minlength'>length has to be > 5</p>
+                            <p class="red" ng-message='required'>Required</p>
                         </div>
+                    </label>
+                    <div class="cols-sm-10">
+
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                             <input type="password" ng-model='ctrl.user.password' class="form-control" name="password" required ng-minlength='5' id="password"  placeholder="Enter your Password"/>
@@ -67,11 +80,14 @@
 
                 <div class="form-group">
                     <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-                    <div class="cols-sm-10">
+                    <label for="confirm" class="cols-sm-2 control-label">
                         <div ng-messages="regForm.confirm.$error">
                             <p class="red" ng-message='pattern'>Passwords do not match</p>
-                            <p class="red" ng-message='required'>Password required</p>
+                            <p class="red" ng-message='required'>Required</p>
                         </div>
+                    </label>
+                    <div class="cols-sm-10">
+
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                             <input type="password" ng-pattern="{{ctrl.user.password}}" class="form-control" name="confirm" id="confirm" ng-model='user.confirm' required  placeholder="Confirm your Password"/>
@@ -90,4 +106,23 @@
         </div>
     </div>
     <footer></footer>
+    <div class="modal fade error-modal" tabindex="-2" role="dialog" aria-labelledby="myerror" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title">An Error Occured</h4>
+			</div>
+			<div class="modal-body err-body text-center">
+				<p>{{ctrl.error}}</p>
+			</div>
+			<div class="modal-footer">
+                <button type="button" class="btn btn-custom" data-dismiss="modal">Cancel</button>
+			</div>
+		</div> <!-- /.modal-content -->
+	</div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->
 </div>

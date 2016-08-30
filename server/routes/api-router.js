@@ -10,7 +10,7 @@ module.exports = function(passport){
 
         // If Passport throws/catches an error
         if (err) {
-          res.status(401).json(err);
+          res.status(504).json(err);
           return;
         }
 
@@ -32,9 +32,8 @@ module.exports = function(passport){
     router.post('/login',function(req, res, next){
         passport.authenticate('local-login',function(err, user, info){
             var token;
-
             if(err){
-                res.status(401).json(err);
+                res.status(504).json(err);
                 return
             }
             if(user){
@@ -54,7 +53,7 @@ module.exports = function(passport){
             popups:req.body.popups,
             user_id:req.body.user_id,
             user_email:req.body.user_email,
-            distance:req.body.dist
+            distance:req.body.distance
         });
         trip.save().then(function(){
             res.json('saved')

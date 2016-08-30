@@ -11,9 +11,9 @@
             return $http.post('/api/register', user).then(function(res){
                 return saveToken(res.data.token)
             })
-            .catch(function(err){
-                throw err.data
-            })
+//            .catch(function(err){
+//                throw err.data
+//            })
         };
         var logout = function() {
             return $window.localStorage.removeItem('token');
@@ -22,9 +22,10 @@
             return $http.post('/api/login', user).then(function(res){
                 return saveToken(res.data.token);
             })
-            .catch(function(err){
-                throw err.data
-            })
+//            .catch(function(err){
+//                throw err.data
+//
+//            })
         }
         var isLoggedIn = function(){
             var token = getToken();

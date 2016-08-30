@@ -9,6 +9,10 @@
                 auth.login(self.user).then(function(){
                     $location.path('/main');
 
+                }).catch(function(err){
+                    self.error = err.data.message;
+                    $('.error-modal').modal();
+
                 })
             }
 

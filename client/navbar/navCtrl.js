@@ -7,7 +7,6 @@
                 $location.path('/')
             }
             self.$onInit = function(){
-                console.log($location)
                 if(($location.url() === '/') || ($location.url() === '/register')){
                     self.logged = false
                 }else{

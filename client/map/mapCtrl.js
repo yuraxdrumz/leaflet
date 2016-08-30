@@ -8,6 +8,17 @@
 
             var blackAndWhite = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png')
             var mymap = L.map('leafmap').setView([32.32, 34.86], 10);
+
+            L.control.fullscreen({
+                position: 'topleft',
+                title: 'Show me the fullscreen !',
+                titleCancel: 'Exit fullscreen mode',
+                content: '<span class="glyphicon glyphicon-resize-full"></span>',
+                forceSeparateButton: true,
+                forcePseudoFullscreen: true,
+                fullscreenElement: false
+            }).addTo(mymap);
+
             var mapnikLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap)
             L.control.layers({'Regular':mapnikLayer,'Black And White':blackAndWhite}).addTo(mymap)
 
@@ -95,14 +106,24 @@
             self.saveNewTrip = function(){
                 var coords =[];
                 var popups = [];
-                var all = {coords:coords,popups:popups,user_id:auth.currentUser()._id,user_email:auth.currentUser().email,dist:distance}
+                var distance = 0;
+
                 for(var i=0,len=full.length;i<len;i++){
+                    if(i<full.length-1){
+                        distance += full[i]._latlng.distanceTo(full[i+1]._latlng)
+                    }
                     coords.push(full[i].getLatLng())
                     popups.push(full[i]._popup._content)
                 }
-                trips.save(all).then(function(res){
-                    $location.path('/main')
-                })
+                var all = {coords:coords,popups:popups,user_id:auth.currentUser()._id,user_email:auth.currentUser().email,distance:distance}
+                if(all.coords.length < 2){
+                    console.log('asdsadasd')
+                }else{
+                    trips.save(all).then(function(res){
+                        $location.path('/main')
+                    })
+                }
+
 
             }
         }])

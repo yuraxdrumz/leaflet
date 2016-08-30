@@ -1,19 +1,35 @@
 #leafmap{
-    height: 60%;
-    margin: 10px 0px;
-}
-.container{
-    height: 100%;
-}
-.navbar{
-    margin: 0px;
+    height: 700px;
 }
 
+
 .pop-control{
-    width: 140px;
+    width: 160px;
 }
 .saveTrip{
     position: absolute;
     z-index: 9999;
-    bottom:0px;
+    bottom:5px;
+    left:5px;
+    width: 150px;
+    height: 50px;
+    font-size:16px;
+}
+.map-page{
+    position: relative;
+    min-height: 100%;
+
+    background:url(http://i.stack.imgur.com/W6Fuk.png) 50% 50%;
+    background-size: cover;
+}
+.map-jumbo{
+/*    margin-top: 100px;*/
+    background: rgba(0, 0, 0, 0.37);
+}
+.map-heading{
+    margin-top:70px;
+    font-size:30px;
+    color:white;
+    display: flex;
+    justify-content: center;
 }
