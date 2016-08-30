@@ -18,11 +18,16 @@
                 forcePseudoFullscreen: true,
                 fullscreenElement: false
             }).addTo(mymap);
-
+            L.easyButton('fa fa-check-circle ', function(btn, map){
+                self.saveNewTrip()
+            }).addTo(mymap)
+            L.control.slideMenu('<div class="text-menu"><h2>Welcome To MyTrip</h2>' + '<p>Click on the map to add a marker, click on the marker and add your text in the input and press enter. Markers will be automatically joined with a line and the distance will be calculated for you.In order to delete a marker, simply press the right mouse button on it.All markers are draggable so do not be afraid to work with them.Be sure to add at least 2 markers and ENJOY.To save the trip press the check icon on the left</p></div>',{width:'250px',position:'topright'}).addTo(mymap);
             var mapnikLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap)
             L.control.layers({'Regular':mapnikLayer,'Black And White':blackAndWhite}).addTo(mymap)
 
-
+            self.check = function(){
+                alert('dsadas')
+            }
             var polilines = [];
             var full = [];
             var poli;
@@ -51,7 +56,6 @@
                 var marker = L.marker(e.latlng,{draggable:true,bounceOnAdd:true})
                     marker.bindPopup('<input class="form-control pop-control" type="text" placeholder="add your stop here" id="message"/>');
                     marker.addTo(mymap);
-
                     marker.on('click', function(e){
                         mymap.panTo(e.latlng);
                         marker.openPopup();
@@ -117,7 +121,7 @@
                 }
                 var all = {coords:coords,popups:popups,user_id:auth.currentUser()._id,user_email:auth.currentUser().email,distance:distance}
                 if(all.coords.length < 2){
-                    console.log('asdsadasd')
+                    $('.error-modal').modal();
                 }else{
                     trips.save(all).then(function(res){
                         $location.path('/main')
