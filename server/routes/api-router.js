@@ -89,6 +89,16 @@ module.exports = function(passport){
         }).catch(function(err){
             res.status(504).json(err)
         })
+    });
+    router.get('/delete/:delete_id', function(req, res){
+
+        var delete_id = req.params.delete_id;
+        console.log(delete_id)
+        Trip.remove({_id:delete_id}).exec().then(function(){
+            res.json('deleted')
+        }).catch(function(err){
+            res.status(504).json(err)
+        })
     })
     return router;
 }

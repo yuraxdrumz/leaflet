@@ -29,11 +29,19 @@
                     throw err.data
                 })
             }
+            var deleteTrip = function(id){
+                return $http.get('/api/delete/' + id).then(function(res){
+                    return res
+                }).catch(function(err){
+                    throw err.data
+                })
+            }
             return {
                 save:save,
                 load:load,
                 edit:edit,
-                sendEdited:sendEdited
+                sendEdited:sendEdited,
+                deleteTrip:deleteTrip
             }
         }])
 })()

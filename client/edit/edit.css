@@ -1,11 +1,12 @@
 #leafmap2{
     height: 60%;
 }
-.container{
-    height: 100%;
-}
+
 .editTrip{
     position: absolute;
     z-index: 9999;
     bottom:0px;
+}
+.edit-page{
+    min-height: 100%;
 }

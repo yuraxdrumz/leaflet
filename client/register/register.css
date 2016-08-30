@@ -68,8 +68,8 @@ input::-webkit-input-placeholder {
     color:white;
 }
 .red{
-    color:red;
-    font-weight: 400;
+    color:rgb(255, 0, 0);
+    font-weight: 100;
     margin: 0;
     margin-left: 10px;
 }

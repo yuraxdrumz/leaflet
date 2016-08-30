@@ -12,7 +12,11 @@
                     self.allTrips = res.data.reverse();
                 })
             }
-
+            self.delete = function(id){
+                $('.del-modal').modal();
+            }
+            self.remove = function(id){
+            }
 
 
         }])
