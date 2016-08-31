@@ -1,5 +1,5 @@
 #leafmap2{
-    height: 60%;
+    height: 700px;
 }
 
 .editTrip{
@@ -8,5 +8,17 @@
     bottom:0px;
 }
 .edit-page{
-    min-height: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: url(/images/bg.png) 50% 50% repeat;
+    background-size: cover;
+}
+.edit-jumbo{
+    margin-top: 70px;
+    color:white;
+    background-color: rgba(0, 0, 0, 0.28);
+}
+.modal-body{
+    font-size:20px;
+    text-align: center;
 }

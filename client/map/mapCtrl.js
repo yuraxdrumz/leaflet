@@ -25,9 +25,6 @@
             var mapnikLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap)
             L.control.layers({'Regular':mapnikLayer,'Black And White':blackAndWhite}).addTo(mymap)
 
-            self.check = function(){
-                alert('dsadas')
-            }
             var polilines = [];
             var full = [];
             var poli;
@@ -121,7 +118,7 @@
                 }
                 var all = {coords:coords,popups:popups,user_id:auth.currentUser()._id,user_email:auth.currentUser().email,distance:distance}
                 if(all.coords.length < 2){
-                    $('.error-modal').modal();
+                    bootbox.alert('You need to add at least 2 markers for a trip, otherwise it is not a trip is it?')
                 }else{
                     trips.save(all).then(function(res){
                         $location.path('/main')

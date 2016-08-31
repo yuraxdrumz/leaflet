@@ -12,11 +12,32 @@
                     self.allTrips = res.data.reverse();
                 })
             }
-            self.delete = function(id){
-                $('.del-modal').modal();
+            self.delete = function(trip){
+                bootbox.confirm({
+                    title: 'Delete Trip',
+                    message: 'Are you sure you want to delete this Trip? If not, click Cancel. There is no undo!l',
+                    buttons: {
+                        'cancel': {
+                            label: 'Cancel',
+                            className: 'btn-default pull-right'
+                        },
+                        'confirm': {
+                            label: 'Delete',
+                            className: 'btn-danger pull-left'
+                        }
+                    },
+                    callback: function(result) {
+                        if (result) {
+                            trips.deleteTrip(trip._id).then(function(){
+                                var index = self.allTrips.indexOf(trip);
+                                self.allTrips.splice(index, 1);
+                            })
+                        }
+                    }
+                });
+
             }
-            self.remove = function(id){
-            }
+
 
 
         }])

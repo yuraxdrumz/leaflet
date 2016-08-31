@@ -85,7 +85,7 @@
 .home{
     min-height: 100%;
     position: relative;
-    background: url(http://www.uksoftech.com/wp-content/uploads/2016/02/website-design-background.png) 50% 50%;
+    background: url(/images/bg.png) 50% 50%;
     background-size: cover;
 }
 .forget{
@@ -108,4 +108,12 @@ a:hover{
     color:black;
     font-size: 16px;
 }
-
+.modal-footer button{
+    color: #fff;
+	background-color: #1fa67b;
+}
+.modal-footer button:hover,
+.modal-footer button:focus {
+    color:white;
+    background-color:#24e3a7;
+}

@@ -87,9 +87,22 @@
                 })
             }
             mymap = L.map('leafmap2').setView([32.32, 34.86], 10);
+                        L.control.slideMenu('<div class="text-menu"><h2>Welcome To MyTrip</h2>' + '<p>Click on the map to add a marker, click on the marker and add your text in the input and press enter. Markers will be automatically joined with a line and the distance will be calculated for you.In order to delete a marker, simply press the right mouse button on it.All markers are draggable so do not be afraid to work with them.Be sure to add at least 2 markers and ENJOY.To save the trip press the check icon on the left</p></div>',{width:'250px',position:'topright'}).addTo(mymap);
             var blackAndWhite = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png')
             var mapnikLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap)
             L.control.layers({'Regular':mapnikLayer,'Black And White':blackAndWhite}).addTo(mymap);
+            L.control.fullscreen({
+                position: 'topleft',
+                title: 'Show me the fullscreen !',
+                titleCancel: 'Exit fullscreen mode',
+                content: '<span class="glyphicon glyphicon-resize-full"></span>',
+                forceSeparateButton: true,
+                forcePseudoFullscreen: true,
+                fullscreenElement: false
+            }).addTo(mymap);
+            L.easyButton('fa fa-check-circle ', function(btn, map){
+                self.editTrip()
+            }).addTo(mymap)
 
             mymap.on('click', function(e){
                 var marker = L.marker(e.latlng,{draggable:true,bounceOnAdd:true})
@@ -164,9 +177,14 @@
                     }
                 }
                 var edited = {popups:popups,coords:markers,distance:distance}
-                trips.sendEdited($routeParams.id,edited).then(function(){
-                    $location.path('/main')
-                })
+                if(full.length < 2){
+                    bootbox.alert('You need to add at least 2 markers for a trip, otherwise it is not a trip is it?')
+                }else{
+                    trips.sendEdited($routeParams.id,edited).then(function(){
+                        $location.path('/main')
+                    })
+                }
+
             }
         }])
 })()

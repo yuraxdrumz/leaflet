@@ -18,7 +18,7 @@
 .main-page{
     min-height: 100vh;
     position: relative;
-    background: url(http://www.uksoftech.com/wp-content/uploads/2016/02/website-design-background.png) 50% 50% repeat;
+    background: url(/images/bg.png) 50% 50% repeat;
     background-size: cover;
 }
 .main-jumbo{

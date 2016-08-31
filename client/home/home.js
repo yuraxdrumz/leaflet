@@ -4,5 +4,5 @@
         templateUrl:'/home/home.html',
         controller:'homeCtrl',
         controllerAs:'ctrl'
-    })
+    });
 })()
