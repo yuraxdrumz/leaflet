@@ -18,6 +18,7 @@ con.on('open',function(){
     app.use(morgan('dev'));
     app.use(passport.initialize());
     app.use(express.static(__dirname + '/client'));
+    app.use(express.static(__dirname + '/client/components'));
     app.use(express.static(__dirname + '/node_modules'));
     app.use(bodyParser.json());
 
