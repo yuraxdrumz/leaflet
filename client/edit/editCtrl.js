@@ -5,11 +5,18 @@
             if(!auth.isLoggedIn()){
                 $location.path('/')
             }
+            //markers
             var cur;
+            //map varibale
             var mymap;
+
+            //latlngs of markers
             var markers = [];
+            //new markers that user adds on edit
             var full = [];
+            //var to store polyline in
             var poli;
+            //popups
             var pops =[];
             function dragStartHandler(e){
                 var latlngs = poli.getLatLngs();
@@ -30,10 +37,12 @@
                 delete this.polylineLatlng;
                 markers = poli.getLatLngs()
             }
+            // on init get the trip's data and return it
             self.$onInit = function(){
                 trips.edit($routeParams.id).then(function(res){
                     return res.data[0];
                 }).then(function(cur){
+                    // runs a loop to add markers with theire events to the map
                     for(var i=0,len=cur.coords.length;i<len;i++){
                         var marker = L.marker(cur.coords[i],{draggable:true})
                         pops.push(cur.popups[i])
@@ -41,7 +50,7 @@
                         markers.push(cur.coords[i]);
                         full.push(marker);
                         marker.addTo(mymap);
-
+                        //iife to give every marker click events
                         (function(marker){
                             marker.on('click', function(e){
                                 mymap.panTo(e.latlng);
@@ -163,6 +172,7 @@
                     marker.on('drag', dragHandler);
                     marker.on('dragend', dragEndHandler)
             });
+            //calculates distance between markers, checks if there's new input in popups
             self.editTrip = function(e){
                 var distance =0;
                 var popups = [];

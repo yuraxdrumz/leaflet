@@ -7,15 +7,14 @@
         <h3 ng-if='(ctrl.allTrips.length) !==1'>You have {{ctrl.allTrips.length}} Trips</h3>
 
         <table class="table custab">
-    <thead>
-<!--       <a ng-href='#/map'><button class="btn btn-primary pull-right">New Trip</button></a>-->
-        <tr>
-            <th class="text-center">Created</th>
-            <th class="text-center">Total markers set</th>
-            <th class="text-center">Total Distance between markers</th>
-            <th class="text-center">Action</th>
-        </tr>
-    </thead>
+            <thead>
+                <tr>
+                    <th class="text-center">Created</th>
+                    <th class="text-center">Total markers set</th>
+                    <th class="text-center">Total Distance between markers</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
             <tr ng-repeat="trip in ctrl.allTrips">
                 <td> {{trip.created}} </td>
                 <td> {{trip.coords.length}} </td>
@@ -25,11 +24,10 @@
                     <span class="glyphicon glyphicon-edit"></span>Edit</a>
                     <a ng-click="ctrl.delete(trip)" class="btn btn-danger">
                     <span class="glyphicon glyphicon-remove"></span>Del</a>
-
                 </td>
             </tr>
-    </table>
-      </div>
+        </table>
+    </div>
     <footer></footer>
 </div>
 

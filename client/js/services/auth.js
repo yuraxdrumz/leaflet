@@ -1,19 +1,20 @@
 (function(){
     angular.module('myApp')
     .factory('auth',['$http','$window',function($http, $window){
+
+        //save token on login or register
         var saveToken = function(token){
             return $window.localStorage['token'] = token;
         };
+        //get token to authenticate
         var getToken = function(){
             return $window.localStorage['token'];
         }
+        //register call with user object
         var register = function(user){
             return $http.post('/api/register', user).then(function(res){
                 return saveToken(res.data.token)
             })
-//            .catch(function(err){
-//                throw err.data
-//            })
         };
         var logout = function() {
             return $window.localStorage.removeItem('token');
@@ -22,11 +23,8 @@
             return $http.post('/api/login', user).then(function(res){
                 return saveToken(res.data.token);
             })
-//            .catch(function(err){
-//                throw err.data
-//
-//            })
         }
+        //checks if token is not expired and returns boolean
         var isLoggedIn = function(){
             var token = getToken();
             var payload;
@@ -39,6 +37,7 @@
                 return false
             }
         }
+        //checks if token is valid and then extracts user info from it
         var currentUser = function(){
             if(isLoggedIn()){
                 var token = getToken();

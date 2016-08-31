@@ -36,6 +36,7 @@
                     throw err.data
                 })
             }
+
             return {
                 save:save,
                 load:load,
