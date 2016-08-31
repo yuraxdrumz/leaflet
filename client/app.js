@@ -17,5 +17,6 @@
             .when('/edit/:id',{
                 template:'<edit></edit>'
             })
+            .otherwise('/')
     }])
 })()
